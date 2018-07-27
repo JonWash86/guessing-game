@@ -20,30 +20,65 @@
 <script>
   //ask question 1, logging to the console: 1) question asked 2) answer received 3) user-side message
     function questionOne(){
-      var questionOneAnswer = prompt('Did I study political science?');
+      var questionOneAnswer = prompt('Did I study political science?').toLowerCase();
       console.log('First question answer is '+ questionOneAnswer + '.');
       if (questionOneAnswer == 'yes') {
         alert('You are woefully mistaken!');
-        console.log('The user got the answer incorrect');
+        console.log('The user got the answer to question one incorrect.');
       }
       else if (questionOneAnswer == 'no') {
         alert('That\'s correct!');
-        console.log('The user got the answer correct');
+        console.log('The user got the answer to question one correct.');
       }
       else {
         alert('What? This is a yes or no question! Please try again.');
-        console.log('The user doesn\'t get the question and will try again.');
+        console.log('The user doesn\'t get question one and will try again.');
         questionOne();
-
       }
     }
     questionOne();
+
   // ask question 2, logging to the console: 1) question asked 2) answer received 3) user-side message
+  function questionTwo(){
+    var questionTwoAnswer = prompt('So you must know I studied film. Have I ever worked with Kevin Bacon?').toLowerCase();
+    console.log('Second question answer is '+ questionTwoAnswer + '.');
+    if (questionTwoAnswer == 'yes') {
+      alert('That\'s a very generous way of putting it, but yes!');
+      console.log('The user got the answer to question two correct.');
+    }
+    else if (questionTwoAnswer == 'no') {
+      alert('Actually you\'re wrong; I\'ve served him coffee. He was walking a bulldog (probably his).');
+      console.log('The user got the answer to question two incorrect.');
+    }
+    else {
+      alert('That\'s just rude. Try answering something more polite like \"yes,\" or \"no.\"');
+      console.log('The user doesn\'t get question two and will try again.');
+      questionTwo();
+    }
+  }
+  questionTwo();
 
   // ask question 3, logging to the console: 1) question asked 2) answer received 3) user-side message
-
+  function questionThree(){
+    var questionThreeAnswer = prompt('Did I grow up in Arizona?').toLowerCase();
+    console.log('Third question answer is '+ questionThreeAnswer + '.');
+    if (questionThreeAnswer == 'yes') {
+      alert('Yup! Just call me a mildly embarrassed son of the Grand Canyon State!');
+      console.log('The user got the answer to question three correct');
+    }
+    else if (questionThreeAnswer == 'no') {
+      alert('Wrong! I hardly believe it either, but I grew up checking my loafers for scorpions!');
+      console.log('The user got the answer to question three incorrect');
+    }
+    else {
+      alert('You really should know how these \'yes or no\' questions work by now.');
+      console.log('The user doesn\'t get question three and will try again.');
+      questionThree();
+    }
+  }
+  questionThree();
   // ask a question and respond if the answer is too high or low, logging to the console: 1) question asked 2) answer received 3) user-side message
-
+  //var residentGuess = prompt('This year I\'ll be celebrating living in Portland for how many years?')
 
     //var name = prompt('Hi there! What is your name?')
     //var dinner = prompt('What is the last thing you ate?')
