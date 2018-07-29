@@ -18,21 +18,13 @@
         <p>Got that?</p>
 
         <p>Good! Let's test your reading comprehension with a little quiz.</p>
-        <!--insert five buttons:-->
         <input type="button" value="Question One" onclick="questionOne()">
-        <br><br>
-        <!--question one button-->
         <input type="button" value="Question Two" onclick="questionTwo()">
         <br><br>
-        <!--question two button-->
         <input type="button" value="Question Three" onclick="questionThree()">
-        <br><br>
-        <!--question three button-->
         <input type="button" value="Question Four" onclick="questionFour()">
         <br><br>
-        <!--question four button-->
         <input type="button" value="How did I do?" onclick="howDidIDo()">
-        <!--"How'd I do?" button-->
     </body>
 </html>
 
@@ -60,7 +52,7 @@
           console.log('The user got the answer to question one incorrect. They still have ' + totalTally + ' correct answers.');
           oneGuessed = true;
         }
-        else if ((questionOneAnswer === 'no')||(questionOneAnswer ==='n')||(questionOneAnswer ==='nope')||(questionOneAnswer ==='nah')||(questionOneAnswer ==='nay')) {
+        else if ((questionOneAnswer == 'no')||(questionOneAnswer =='n')||(questionOneAnswer =='nope')||(questionOneAnswer =='nah')||(questionOneAnswer =='nay')(questionOneAnswer =='false')) {
           alert('That\'s correct!');
           totalTally = true;
           console.log('The user got the answer to question one correct. Their tally of correct answers is at ' + totalTally + '.')
@@ -92,7 +84,7 @@
         alert('That\'s a very generous way of putting it, but yes!');
         twoGuessed = true;
       }
-      else if ((questionTwoAnswer == 'no')||(questionTwoAnswer =='n')||(questionTwoAnswer =='nah')||(questionTwoAnswer =='nay')) {
+      else if ((questionTwoAnswer == 'no')||(questionTwoAnswer =='n')||(questionTwoAnswer =='nah')||(questionTwoAnswer =='nay')||(questionTwoAnswer == 'false')) {
         console.log('The user got the answer to question two incorrect. They still have ' + totalTally + ' correct answers.');
         alert('Actually you\'re wrong; I\'ve served him coffee. He was walking a bulldog (probably his).');
         twoGuessed = true;
@@ -122,7 +114,7 @@
         alert('Yup! Just call me a mildly embarrassed son of the Grand Canyon State!');
         threeGuessed = true;
       }
-      else if ((questionThreeAnswer === 'no')||(questionThreeAnswer ==='n')||(questionThreeAnswer ==='nope')||(questionThreeAnswer ==='nah')||(questionThreeAnswer ==='nay')){
+      else if ((questionThreeAnswer == 'no')||(questionThreeAnswer =='n')||(questionThreeAnswer =='nope')||(questionThreeAnswer ==='nah')||(questionThreeAnswer =='nay')||(questionThreeAnswer == 'false')){
         console.log('The user got the answer to question three incorrect. They still have ' + totalTally + ' correct answers.');
         alert('Wrong! I hardly believe it either, but I grew up checking my loafers for scorpions!');
         threeGuessed = true;
@@ -167,7 +159,7 @@
   }
 
   function howDidIDo(){
-    if (oneGuessed && twoGuessed  && threeGuessed && fourGuessed){
+    if (oneGuessed && twoGuessed && threeGuessed && fourGuessed){
       if (totalTally == 0){
         alert('You have zero answers correct. I\'m not even sure you tried.');
         console.log('The user requested their tally of correct answers, which is at ' + totalTally + '.');
@@ -193,5 +185,4 @@
       alert('Let\'s wait until you\'ve answered all the questions!')
     }
   }
-
 </script>
