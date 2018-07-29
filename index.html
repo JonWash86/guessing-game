@@ -15,17 +15,30 @@
 
         <p>I'm hoping to learn about coding and web development over the next few weeks. My immediate goal is to challenge myself as much as possible, while a less immediate goal is to change my career. Looking super-duper-long-term, I hope to one day live somewhere out where you can see all the stars at night, though I don't know how many years I could stand being outside walking distance of a bookstore.</p>
 
+        <p>Got that?</p>
+
+        <p>Good! Let's test your reading comprehension with a little quiz.</p>
         <!--insert five buttons:-->
+        <input type="button" value="Question One" onclick="questionOne()">
+        <br><br>
         <!--question one button-->
+        <input type="button" value="Question Two" onclick="questionTwo()">
+        <br><br>
         <!--question two button-->
+        <input type="button" value="Question Three" onclick="questionThree()">
+        <br><br>
         <!--question three button-->
+        <input type="button" value="Question Four" onclick="questionFour()">
+        <br><br>
         <!--question four button-->
+        <input type="button" value="How did I do?" onclick="howDidIDo()">
         <!--"How'd I do?" button-->
     </body>
 </html>
 
 <script>
   //add a global variable for correct answers
+  var totalTally = 0;
   //update this question to log correct answers to the console and update tbe correct answer variable.
   function questionOne(){
     var questionOneAnswer = prompt('Did I study political science?').toLowerCase();
@@ -114,5 +127,18 @@
       }
   }
   //questionFour();
+
+  // add a function for the fifth button to announce the user's score
+  function howDidIDo(){
+    if (totalTally == 1){
+      alert('You got one question right, and the final question wouldn\'t let you quit until you guessed correctly. Nice.');
+    }
+    else if (totalTally <=3){
+      alert('Hey, you got ' + totalTally + ' answers correct. That\'s not bad! Not perfect, but not bad.');
+    }
+    else if (totalTally == 4){
+      alert('You got ' + totalTally + ' questions right. That\'s a perfect score!');
+    }
+  }
 
 </script>
