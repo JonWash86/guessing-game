@@ -37,27 +37,37 @@
 </html>
 
 <script>
-  //add a global variable for correct answers
   var totalTally = 0;
-  //update this question to log correct answers to the console and update tbe correct answer variable.
+
+  var oneGuessed = false;
+  var twoGuessed = false;
+  var threeGuessed = false;
+  var fourGuessed = false;
   //add contingencies for yes or no states, allowing for y, n, yup, nope, yeah, and nah
   function questionOne(){
-    var questionOneAnswer = prompt('Did I study political science?').toLowerCase();
-    console.log('First question answer is '+ questionOneAnswer + '.');
-    if (questionOneAnswer == 'yes') {
-      alert('You are woefully mistaken!');
-      console.log('The user got the answer to question one incorrect.');
+    if (oneGuessed == true){
+      alert('You already answered this question!')
     }
-    else if (questionOneAnswer == 'no') {
-      alert('That\'s correct!');
-      totalTally += 1;
-      console.log('The user got the answer to question one correct. Their tally of correct answers is at ' + totalTally + '.')
-      ;
-    }
-    else {
-      alert('What? This is a yes or no question! Please try again.');
-      console.log('The user doesn\'t get question one and will try again.');
-      questionOne();
+    while (oneGuessed < 1){
+      var questionOneAnswer = prompt('Did I study political science?').toLowerCase();
+        console.log('First question answer is '+ questionOneAnswer + '.');
+        if (questionOneAnswer == 'yes') {
+          alert('You are woefully mistaken!');
+          console.log('The user got the answer to question one incorrect. They still have ' + totalTally + ' correct answers.');
+          oneGuessed = true;
+        }
+        else if (questionOneAnswer == 'no') {
+          alert('That\'s correct!');
+          totalTally = true;
+          console.log('The user got the answer to question one correct. Their tally of correct answers is at ' + totalTally + '.')
+          ;
+          oneGuessed = true;
+        }
+        else {
+          alert('What? This is a yes or no question! Please try again.');
+          console.log('The user doesn\'t get question one and will try again.');
+          questionOne();
+        }
     }
   }
 
@@ -72,7 +82,7 @@
       alert('That\'s a very generous way of putting it, but yes!');
     }
     else if (questionTwoAnswer == 'no') {
-      console.log('The user got the answer to question two incorrect.');
+      console.log('The user got the answer to question two incorrect. They still have ' + totalTally + ' correct answers.');
       alert('Actually you\'re wrong; I\'ve served him coffee. He was walking a bulldog (probably his).');
     }
     else {
@@ -93,7 +103,7 @@
       alert('Yup! Just call me a mildly embarrassed son of the Grand Canyon State!');
     }
     else if (questionThreeAnswer == 'no') {
-      console.log('The user got the answer to question three incorrect.');
+      console.log('The user got the answer to question three incorrect. They still have ' + totalTally + ' correct answers.');
       alert('Wrong! I hardly believe it either, but I grew up checking my loafers for scorpions!');
     }
     else {
