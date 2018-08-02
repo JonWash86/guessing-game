@@ -17,6 +17,9 @@
 
         <p>Got that?</p>
 
+        <!-- I need to update this section with buttons which call the allQuestion() function with the question number and correct value as objects. -->
+        <!-- I need to update this section with html elements with Ids which will update the page if the answer is correct/wrong/invalid -->
+
         <p>Good! Let's test your reading comprehension with a little quiz.</p>
         <input type="button" value="Question One" onclick="questionOne()">
         <input type="button" value="Question Two" onclick="questionTwo()">
@@ -28,7 +31,7 @@
     </body>
 </html>
 
-<script>
+<script type="text/javascript">
   var totalTally = 0;
 
   var oneGuessed = false;
@@ -36,13 +39,38 @@
   var threeGuessed = false;
   var fourGuessed = false;
 
+  var questionOneAnswer = "";
+
+  function askQuestion(whichQuestion){
+    if (whichQuestion = questionOne){
+      console.log('hey, that worked!')
+      questionOneAnswer = prompt('Did I study political science?').toLowerCase();
+    }
+  }
+  function tallyUp(){
+    totalTally += 1;
+    console.log('The user got the answer to question one correct. Their tally of correct answers is at ' + totalTally + '.');
+  }
+
+  function correctAnswer(whichQuestion){
+    if (whichQuestion = one){
+      console.log('That\'s correct!')
+      oneGuessed = true
+    }
+    tallyUp()
+  }
+
+
+
+
   function questionOne(){
     if (oneGuessed){
       alert('You already answered this question!')
     }
     else {
-      var questionOneAnswer = prompt('Did I study political science?').toLowerCase();
-        console.log('First question answer is '+ questionOneAnswer + '.');
+      askQuestion(questionOne);
+      /*var questionOneAnswer = prompt('Did I study political science?').toLowerCase();
+        console.log('First question answer is '+ questionOneAnswer + '.');*/
         if (questionOneAnswer ==''){
           alert('Please enter an answer.');
           questionOne();
@@ -52,12 +80,8 @@
           console.log('The user got the answer to question one incorrect. They still have ' + totalTally + ' correct answers.');
           oneGuessed = true;
         }
-        else if ((questionOneAnswer == 'no')||(questionOneAnswer =='n')||(questionOneAnswer =='nope')||(questionOneAnswer =='nah')||(questionOneAnswer =='nay')(questionOneAnswer =='false')) {
-          alert('That\'s correct!');
-          totalTally = true;
-          console.log('The user got the answer to question one correct. Their tally of correct answers is at ' + totalTally + '.')
-          ;
-          oneGuessed = true;
+        else if ((questionOneAnswer == 'no')||(questionOneAnswer =='n')||(questionOneAnswer =='nope')||(questionOneAnswer =='nah')||(questionOneAnswer =='nay')||(questionOneAnswer =='false')) {
+          correctAnswer(questionOne);
         }
         else {
           alert('What? This is a yes or no question! Please try again.');
@@ -79,8 +103,7 @@
         questionTwo();
       }
       else if ((questionTwoAnswer == 'yes' )||(questionTwoAnswer == 'y' )|| (questionTwoAnswer =='yeah') ||(questionTwoAnswer == 'yup')||(questionTwoAnswer =='true')) {
-        totalTally += 1;
-        console.log('The user got the answer to question two correct. Their tally of correct answers is at ' + totalTally + '.');
+        tallyUp()
         alert('That\'s a very generous way of putting it, but yes!');
         twoGuessed = true;
       }
@@ -109,8 +132,7 @@
         questionThree();
       }
       else if ((questionThreeAnswer == 'yes' )||(questionThreeAnswer == 'y' )|| (questionThreeAnswer =='yeah') ||(questionThreeAnswer == 'yup')||(questionThreeAnswer =='true')){
-        totalTally += 1;
-        console.log('The user got the answer to question three correct. Their tally of correct answers is at ' + totalTally + '.');
+        tallyUp();
         alert('Yup! Just call me a mildly embarrassed son of the Grand Canyon State!');
         threeGuessed = true;
       }
@@ -150,8 +172,7 @@
           questionFour();
         }
         else if (residentGuess == 8){
-          totalTally += 1;
-          console.log('User informed of correct guess. Their tally of correct answers is at ' + totalTally + '.');
+          tallyUp()
           alert('You got it! I moved here 8 years ago. How time flies.');
           fourGuessed = true;
         }
@@ -185,4 +206,13 @@
       alert('Let\'s wait until you\'ve answered all the questions!')
     }
   }
+
+  //developing a new function for asking questions, so each button can simply call allQuestion() and receive an answer that can recognize a true response versus a false response, and parse it accurately depending on the correct answer, or re-run the question should the user submit an invalid response
+  // this new function will also need to be able to mark off which question has been answered and tally the number of correct answers.
+  // how about this: function that will reply to a true or false; it branches into two mini functions, which inversely operate based on the object in parenthesis, if (true) or if (false), then does an if/then for blank answer -> true answer -> false answer.
+  // a correct response will give an affirmative and run the answer tally function, an incorrect will give a negative and run teh answer tally function
+  //mini-function ideas:
+
+
+
 </script>
