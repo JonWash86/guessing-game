@@ -49,44 +49,68 @@
   }
   function tallyUp(){
     totalTally += 1;
-    console.log('The user got the answer to question one correct. Their tally of correct answers is at ' + totalTally + '.');
+    console.log('The user got the answer correct. Their tally of correct answers is at ' + totalTally + '.');
+  }
+
+  function checkBlank(answer, numb){
+    if (answer ==''){
+      alert('Please enter an answer.')
+      if (numb == 'one'){
+        questionOne();
+      }
+    }
+  }
+
+  function checkFalse(answer){
+    if ((answer == 'no')||(answer =='n')||(answer =='nope')||(answer =='nah')||(answer =='nay')||(answer =='false')){
+      console.log('the user responded in the negative.')
+      return 'negative';
+    }
+  }
+
+  function checkTrue(answer){
+    if((answer == 'yes' )||(answer == 'y' )|| (answer =='yeah') ||(answer == 'yup')||(answer =='true')){
+      console.log('the user responded in the affirmative.');
+      return 'affirmative';
+    }
   }
 
   function correctAnswer(whichQuestion){
-    if (whichQuestion = one){
-      console.log('That\'s correct!')
-      oneGuessed = true
+    if (whichQuestion = questionOne){
+      alert('That\'s correct!');
+      oneGuessed = true;
+      tallyUp();
     }
-    tallyUp()
   }
 
+  var guessedQuestions = [true, true, true, true]
+
+  function guessedYet(i){
+    if (guessedYet[i]==true){
+      alert('You alreadt answered this question!')
+    }
+  }
 
 
 
   function questionOne(){
     if (oneGuessed){
       alert('You already answered this question!')
-    }
     else {
       askQuestion(questionOne);
-      /*var questionOneAnswer = prompt('Did I study political science?').toLowerCase();
-        console.log('First question answer is '+ questionOneAnswer + '.');*/
-        if (questionOneAnswer ==''){
-          alert('Please enter an answer.');
-          questionOne();
-        }
-        else if ((questionOneAnswer == 'yes' )||(questionOneAnswer == 'y' )|| (questionOneAnswer =='yeah') ||(questionOneAnswer == 'yup')||(questionOneAnswer =='true')) {
-          alert('You are woefully mistaken!');
-          console.log('The user got the answer to question one incorrect. They still have ' + totalTally + ' correct answers.');
-          oneGuessed = true;
-        }
-        else if ((questionOneAnswer == 'no')||(questionOneAnswer =='n')||(questionOneAnswer =='nope')||(questionOneAnswer =='nah')||(questionOneAnswer =='nay')||(questionOneAnswer =='false')) {
-          correctAnswer(questionOne);
-        }
-        else {
-          alert('What? This is a yes or no question! Please try again.');
-          console.log('The user doesn\'t get question one and will try again.');
-          questionOne();
+      checkBlank(questionOneAnswer, 'one')
+      if (checkTrue(questionOneAnswer) == 'affirmative') {
+        alert('You are woefully mistaken!');
+        console.log('The user got the answer to question one incorrect. They still have ' + totalTally + ' correct answers.');
+        oneGuessed = true;
+      }
+      else if (checkFalse(questionOneAnswer)== 'negative') {
+        correctAnswer(questionOne);
+      }
+      else {
+        alert('What? This is a yes or no question! Please try again.');
+        console.log('The user doesn\'t get question one and will try again.');
+        questionOne();
         }
     }
   }
@@ -102,12 +126,12 @@
         alert('Please enter an answer.');
         questionTwo();
       }
-      else if ((questionTwoAnswer == 'yes' )||(questionTwoAnswer == 'y' )|| (questionTwoAnswer =='yeah') ||(questionTwoAnswer == 'yup')||(questionTwoAnswer =='true')) {
+      else if (checkTrue(questionTwoAnswer) == 'affirmative') {
         tallyUp()
         alert('That\'s a very generous way of putting it, but yes!');
         twoGuessed = true;
       }
-      else if ((questionTwoAnswer == 'no')||(questionTwoAnswer =='n')||(questionTwoAnswer =='nah')||(questionTwoAnswer =='nay')||(questionTwoAnswer == 'false')) {
+      else if (checkFalse(questionTwoAnswer) == 'negative') {
         console.log('The user got the answer to question two incorrect. They still have ' + totalTally + ' correct answers.');
         alert('Actually you\'re wrong; I\'ve served him coffee. He was walking a bulldog (probably his).');
         twoGuessed = true;
@@ -131,12 +155,12 @@
         alert('Please enter an answer.');
         questionThree();
       }
-      else if ((questionThreeAnswer == 'yes' )||(questionThreeAnswer == 'y' )|| (questionThreeAnswer =='yeah') ||(questionThreeAnswer == 'yup')||(questionThreeAnswer =='true')){
+      else if (checkTrue(questionThreeAnswer) == 'affirmative'){
         tallyUp();
         alert('Yup! Just call me a mildly embarrassed son of the Grand Canyon State!');
         threeGuessed = true;
       }
-      else if ((questionThreeAnswer == 'no')||(questionThreeAnswer =='n')||(questionThreeAnswer =='nope')||(questionThreeAnswer ==='nah')||(questionThreeAnswer =='nay')||(questionThreeAnswer == 'false')){
+      else if (checkFalse(questionThreeAnswer) == 'negative'){
         console.log('The user got the answer to question three incorrect. They still have ' + totalTally + ' correct answers.');
         alert('Wrong! I hardly believe it either, but I grew up checking my loafers for scorpions!');
         threeGuessed = true;
