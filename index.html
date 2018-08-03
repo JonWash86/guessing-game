@@ -41,11 +41,11 @@
         <!-- I need to update this section with html elements with Ids which will update the page if the answer is correct/wrong/invalid -->
 
         <p>Good! Let's test your reading comprehension with a little quiz.</p>
-        <input type="button" value="Question One" onclick="questionOne()"> <p id="oneSpace"></p>
-        <input type="button" value="Question Two" onclick="questionTwo()"> <p id="twoSpace"></p>
-        <input type="button" value="Question Three" onclick="questionThree()"> <p id="threeSpace"></p>
-        <input type="button" value="Question Four" onclick="questionFour()"> <p id="fourSpace"></p>
-        <input type="button" value="How did I do?" onclick="howDidIDo()"> <p id="resultSpace"></p>
+        <p id="oneSpace">Did I study political science? &nbsp;<input type='text' id='answerOne'>  <input type='button' value='Submit' onclick='questionOne()'></p>
+        <p id="twoSpace">I studied film. Have I ever worked with Kevin Bacon? &nbsp;<input type='text' id='answerTwo'> <input type="button" value="Question Two" onclick="questionTwo()"> </p>
+        <p id="threeSpace"> Did I grow up in Arizona?&nbsp;<input type='text' id='answerThree'> <input type="button" value="Question Three" onclick="questionThree()"> </p>
+        <p id="fourSpace"> This year I'll be celebrating living in Portland for how many years?&nbsp;<input type='text' id='answerFour'> <input type="button" value="Question Four" onclick="questionFour()"> </p>
+        <p id="resultSpace">Check your total once you're done!&nbsp;<input type="button" value="How did I do?" onclick="howDidIDo()"> </p>
     </body>
 </html>
 
@@ -65,15 +65,6 @@
   function checkBlank(answer, numb){
     if (answer ==''){
       alert('Please enter an answer.')
-      if (numb == 'one'){
-        questionOne();
-      }
-      else if (numb =='two'){
-        questionTwo();
-      }
-      else {
-        questionThree();
-      }
     }
   }
 
@@ -96,8 +87,9 @@
       alert('You already answered this question!')
     }
     else {
-      questionOneAnswer = prompt('Did I study political science?').toLowerCase();
-      checkBlank(questionOneAnswer, 'one')
+      //questionOneAnswer = prompt('Did I study political science?').toLowerCase();
+      var questionOneAnswer = document.getElementById('answerOne').value;
+      console.log(questionOneAnswer)
       if (checkTrue(questionOneAnswer) == 'affirmative') {
         var oneResponse = document.getElementById('oneSpace');
         oneSpace.innerHTML = 'You are woefully mistaken!';
@@ -113,8 +105,7 @@
       else {
         alert('What? This is a yes or no question! Please try again.');
         console.log('The user doesn\'t get question one and will try again.');
-        questionOne();
-        }
+      }
     }
   }
 
@@ -123,7 +114,8 @@
       alert('You already answered this question!')
     }
     else{
-      var questionTwoAnswer = prompt('So you must know I studied film. Have I ever worked with Kevin Bacon?').toLowerCase();
+      var questionTwoAnswer = document.getElementById('answerTwo').value;
+      //var questionTwoAnswer = prompt('So you must know I studied film. Have I ever worked with Kevin Bacon?').toLowerCase();
       console.log('Second question answer is '+ questionTwoAnswer + '.');
       checkBlank(questionTwoAnswer, 'two');
       if (checkTrue(questionTwoAnswer) == 'affirmative') {
@@ -151,7 +143,8 @@
       alert('You already answered this question!')
     }
     else{
-      var questionThreeAnswer = prompt('Did I grow up in Arizona?').toLowerCase();
+      var questionThreeAnswer = document.getElementById('answerThree').value;
+      //var questionThreeAnswer = prompt('Did I grow up in Arizona?').toLowerCase();
       console.log('Third question answer is '+ questionThreeAnswer + '.');
       checkBlank(questionThreeAnswer, 'three');
       if (checkTrue(questionThreeAnswer) == 'affirmative'){
@@ -180,26 +173,26 @@
       alert('You already answered this question!')
     }
     else{
-      var residentGuess = prompt('This year I\'ll be celebrating living in Portland for how many years?');
+      var residentGuess = document.getElementById('answerFour').value;
+      //var residentGuess = prompt('This year I\'ll be celebrating living in Portland for how many years?');
       console.log('The user guessed ' + residentGuess + ' years.');
         if (isNaN(residentGuess)){
           console.log('They didn\'t even guess a number. I\'m not one to judge, but wow.');
           alert('I need you to guess a number, please. \'' + residentGuess +'\' years is not a number of years.');
-          questionFour();
         }
         else if (residentGuess < 8){
           console.log('User guessed too low by ' + (8 - residentGuess) + ' years.');
           alert('Close! I\'ve been here a bit longer than that, though.');
-          questionFour();
         }
         else if (residentGuess > 8){
           console.log('User guessed too high by ' + (residentGuess - 8) + ' years.');
           alert('Not bad, but I haven\'t quite reached that milestone.')
-          questionFour();
         }
         else if (residentGuess == 8){
           tallyUp()
-          alert('You got it! I moved here 8 years ago. How time flies.');
+          var threeResponse = document.getElementById('fourSpace');
+          fourSpace.innerHTML = 'You got it! I moved here 8 years ago. How time flies.';
+          //alert('You got it! I moved here 8 years ago. How time flies.');
           fourGuessed = true;
         }
       }
