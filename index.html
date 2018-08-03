@@ -2,6 +2,26 @@
 <html>
     <head>
         <title>Hello world!</title>
+        <style type="text/css">
+        body{
+          background-color: #004537;
+        }
+        h2{
+          color: #ABE20B;
+          font-family: Impact;
+          letter-spacing: 5px;
+          text-align: center;
+          font-size: 45px;
+        }
+        p{
+          font-family: Helvetica;
+          color: #ABE29A;
+        }
+        input{
+          background-color: #ABE20B;
+        }
+
+        </style>
     </head>
     <body>
         <h2>Oh, hello.</h2>
@@ -21,13 +41,11 @@
         <!-- I need to update this section with html elements with Ids which will update the page if the answer is correct/wrong/invalid -->
 
         <p>Good! Let's test your reading comprehension with a little quiz.</p>
-        <input type="button" value="Question One" onclick="questionOne()">
-        <input type="button" value="Question Two" onclick="questionTwo()">
-        <br><br>
-        <input type="button" value="Question Three" onclick="questionThree()">
-        <input type="button" value="Question Four" onclick="questionFour()">
-        <br><br>
-        <input type="button" value="How did I do?" onclick="howDidIDo()">
+        <input type="button" value="Question One" onclick="questionOne()"> <p id="oneSpace"></p>
+        <input type="button" value="Question Two" onclick="questionTwo()"> <p id="twoSpace"></p>
+        <input type="button" value="Question Three" onclick="questionThree()"> <p id="threeSpace"></p>
+        <input type="button" value="Question Four" onclick="questionFour()"> <p id="fourSpace"></p>
+        <input type="button" value="How did I do?" onclick="howDidIDo()"> <p id="resultSpace"></p>
     </body>
 </html>
 
@@ -39,14 +57,6 @@
   var threeGuessed = false;
   var fourGuessed = false;
 
-  var questionOneAnswer = "";
-
-  function askQuestion(whichQuestion){
-    if (whichQuestion = questionOne){
-      console.log('hey, that worked!')
-      questionOneAnswer = prompt('Did I study political science?').toLowerCase();
-    }
-  }
   function tallyUp(){
     totalTally += 1;
     console.log('The user got the answer correct. Their tally of correct answers is at ' + totalTally + '.');
@@ -57,6 +67,12 @@
       alert('Please enter an answer.')
       if (numb == 'one'){
         questionOne();
+      }
+      else if (numb =='two'){
+        questionTwo();
+      }
+      else {
+        questionThree();
       }
     }
   }
@@ -75,37 +91,24 @@
     }
   }
 
-  function correctAnswer(whichQuestion){
-    if (whichQuestion = questionOne){
-      alert('That\'s correct!');
-      oneGuessed = true;
-      tallyUp();
-    }
-  }
-
-  var guessedQuestions = [true, true, true, true]
-
-  function guessedYet(i){
-    if (guessedYet[i]==true){
-      alert('You alreadt answered this question!')
-    }
-  }
-
-
-
   function questionOne(){
     if (oneGuessed){
       alert('You already answered this question!')
+    }
     else {
-      askQuestion(questionOne);
+      questionOneAnswer = prompt('Did I study political science?').toLowerCase();
       checkBlank(questionOneAnswer, 'one')
       if (checkTrue(questionOneAnswer) == 'affirmative') {
-        alert('You are woefully mistaken!');
+        var oneResponse = document.getElementById('oneSpace');
+        oneSpace.innerHTML = 'You are woefully mistaken!';
         console.log('The user got the answer to question one incorrect. They still have ' + totalTally + ' correct answers.');
         oneGuessed = true;
       }
       else if (checkFalse(questionOneAnswer)== 'negative') {
-        correctAnswer(questionOne);
+        var oneResponse = document.getElementById('oneSpace');
+        oneSpace.innerHTML = 'That\'s correct!';
+        oneGuessed = true;
+        tallyUp();
       }
       else {
         alert('What? This is a yes or no question! Please try again.');
@@ -122,18 +125,17 @@
     else{
       var questionTwoAnswer = prompt('So you must know I studied film. Have I ever worked with Kevin Bacon?').toLowerCase();
       console.log('Second question answer is '+ questionTwoAnswer + '.');
-      if (questionTwoAnswer ==''){
-        alert('Please enter an answer.');
-        questionTwo();
-      }
-      else if (checkTrue(questionTwoAnswer) == 'affirmative') {
-        tallyUp()
-        alert('That\'s a very generous way of putting it, but yes!');
+      checkBlank(questionTwoAnswer, 'two');
+      if (checkTrue(questionTwoAnswer) == 'affirmative') {
+        var twoResponse = document.getElementById('twoSpace');
+        twoSpace.innerHTML = 'That\'s a very generous way of putting it, but yes!';
         twoGuessed = true;
+        tallyUp();
       }
       else if (checkFalse(questionTwoAnswer) == 'negative') {
         console.log('The user got the answer to question two incorrect. They still have ' + totalTally + ' correct answers.');
-        alert('Actually you\'re wrong; I\'ve served him coffee. He was walking a bulldog (probably his).');
+        var twoResponse = document.getElementById('twoSpace');
+        twoSpace.innerHTML = 'Actually you\'re wrong; I\'ve served him coffee. He was walking a bulldog (probably his).';
         twoGuessed = true;
       }
       else {
@@ -151,18 +153,18 @@
     else{
       var questionThreeAnswer = prompt('Did I grow up in Arizona?').toLowerCase();
       console.log('Third question answer is '+ questionThreeAnswer + '.');
-      if (questionThreeAnswer == ''){
-        alert('Please enter an answer.');
-        questionThree();
-      }
-      else if (checkTrue(questionThreeAnswer) == 'affirmative'){
+      checkBlank(questionThreeAnswer, 'three');
+      if (checkTrue(questionThreeAnswer) == 'affirmative'){
+        console.log('The user got the answer to question three correct. They now have ' + totalTally + ' correct answers.')
+        var threeResponse = document.getElementById('threeSpace');
+        threeSpace.innerHTML = 'Yup! Just call me a mildly embarrassed son of the Grand Canyon State!';
         tallyUp();
-        alert('Yup! Just call me a mildly embarrassed son of the Grand Canyon State!');
         threeGuessed = true;
       }
       else if (checkFalse(questionThreeAnswer) == 'negative'){
         console.log('The user got the answer to question three incorrect. They still have ' + totalTally + ' correct answers.');
-        alert('Wrong! I hardly believe it either, but I grew up checking my loafers for scorpions!');
+        var threeResponse = document.getElementById('threeSpace');
+        threeSpace.innerHTML = 'Wrong! I hardly believe it either, but I grew up checking my loafers for scorpions!';
         threeGuessed = true;
       }
       else {
@@ -206,23 +208,23 @@
   function howDidIDo(){
     if (oneGuessed && twoGuessed && threeGuessed && fourGuessed){
       if (totalTally == 0){
-        alert('You have zero answers correct. I\'m not even sure you tried.');
+        var resultResponse = document.getElementById('resultSpace');
+        resultSpace.innerHTML = 'You have zero answers correct. I\'m not even sure you tried.';
         console.log('The user requested their tally of correct answers, which is at ' + totalTally + '.');
       }
       else if (totalTally == 1){
-        alert('You got one question right, and the final question wouldn\'t let you quit until you guessed correctly. Nice.');
+        var resultResponse = document.getElementById('resultSpace');
+        resultSpace.innerHTML = 'You got one question right, and the final question wouldn\'t let you quit until you guessed correctly. Nice.';
         console.log('The user requested their tally of correct answers, which is at ' + totalTally + '.');
       }
       else if (totalTally <=3){
-        alert('Hey, you got ' + totalTally + ' answers correct. That\'s not bad! Not perfect, but not bad.');
+        var resultResponse = document.getElementById('resultSpace');
+        resultSpace.innerHTML = 'Hey, you got ' + totalTally + ' answers correct. That\'s not bad! Not perfect, but not bad.';
         console.log('The user requested their tally of correct answers, which is at ' + totalTally + '.');
       }
       else if (totalTally == 4){
-        alert('You got ' + totalTally + ' questions right. That\'s a perfect score!');
-        console.log('The user requested their tally of correct answers, which is at ' + totalTally + '.');
-      }
-      else if (totalTally > 4){
-        alert('Okay, you got me. It\'s totally possible to spam one button with correct answers and skew your results \(all the way up to ' + totalTally + ' points, as you can see\).');
+        var resultResponse = document.getElementById('resultSpace');
+        resultSpace.innerHTML = 'You got ' + totalTally + ' questions right. That\'s a perfect score!';
         console.log('The user requested their tally of correct answers, which is at ' + totalTally + '.');
       }
     }
@@ -230,13 +232,6 @@
       alert('Let\'s wait until you\'ve answered all the questions!')
     }
   }
-
-  //developing a new function for asking questions, so each button can simply call allQuestion() and receive an answer that can recognize a true response versus a false response, and parse it accurately depending on the correct answer, or re-run the question should the user submit an invalid response
-  // this new function will also need to be able to mark off which question has been answered and tally the number of correct answers.
-  // how about this: function that will reply to a true or false; it branches into two mini functions, which inversely operate based on the object in parenthesis, if (true) or if (false), then does an if/then for blank answer -> true answer -> false answer.
-  // a correct response will give an affirmative and run the answer tally function, an incorrect will give a negative and run teh answer tally function
-  //mini-function ideas:
-
 
 
 </script>
