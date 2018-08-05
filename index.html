@@ -54,17 +54,11 @@
   var totalTally = 0;
   var totalGuessed = 0;
 
-  /*var oneGuessed = false;
-  var twoGuessed = false;
-  var threeGuessed = false;
-  var fourGuessed = false;*/
-
   function tallyUp(){
     totalTally += 1;
     console.log('The user got the answer correct. Their tally of correct answers is at ' + totalTally + '.');
   }
 
-//pasted in test text
 
   function checkAnswer(answer){
     if ((answer == 'no')||(answer =='n')||(answer =='nope')||(answer =='nah')||(answer =='nay')||(answer =='false')){
@@ -115,105 +109,7 @@
     questionSolve('Three', 'affirmative', 'Yup! Just call me a mildly embarrassed son of the Grand Canyon State!', 'Wrong! I hardly believe it either, but I grew up checking my loafers for scorpions!');
   }
 
-
-  /*function checkFalse(answer){
-    if ((answer == 'no')||(answer =='n')||(answer =='nope')||(answer =='nah')||(answer =='nay')||(answer =='false')){
-      console.log('the user responded in the negative.')
-      return 'negative';
-    }
-  }
-
-  function checkTrue(answer){
-    if((answer == 'yes' )||(answer == 'y' )|| (answer =='yeah') ||(answer == 'yup')||(answer =='true')){
-      console.log('the user responded in the affirmative.');
-      return 'affirmative';
-    }
-  }
-
-  function questionOne(){
-    if (oneGuessed){
-      alert('You already answered this question!')
-    }
-    else {
-      var questionOneAnswer = document.getElementById('answerOne').value.toLowerCase();
-      console.log(questionOneAnswer)
-      if (checkTrue(questionOneAnswer) == 'affirmative') {
-        var oneResponse = document.getElementById('oneSpace');
-        oneSpace.innerHTML = 'You are woefully mistaken!';
-        console.log('The user got the answer to question one incorrect. They still have ' + totalTally + ' correct answers.');
-        oneGuessed = true;
-      }
-      else if (checkFalse(questionOneAnswer)== 'negative') {
-        var oneResponse = document.getElementById('oneSpace');
-        oneSpace.innerHTML = 'That\'s correct!';
-        oneGuessed = true;
-        tallyUp();
-      }
-      else {
-        alert('What? This is a yes or no question! Please try again.');
-        console.log('The user doesn\'t get question one and will try again.');
-      }
-    }
-  }
-
-  function questionTwo(){
-    if (twoGuessed){
-      alert('You already answered this question!')
-    }
-    else{
-      var questionTwoAnswer = document.getElementById('answerTwo').value.toLowerCase();
-      console.log('Second question answer is '+ questionTwoAnswer + '.');
-      if (checkTrue(questionTwoAnswer) == 'affirmative') {
-        var twoResponse = document.getElementById('twoSpace');
-        twoSpace.innerHTML = 'That\'s a very generous way of putting it, but yes!';
-        twoGuessed = true;
-        tallyUp();
-      }
-      else if (checkFalse(questionTwoAnswer) == 'negative') {
-        console.log('The user got the answer to question two incorrect. They still have ' + totalTally + ' correct answers.');
-        var twoResponse = document.getElementById('twoSpace');
-        twoSpace.innerHTML = 'Actually you\'re wrong; I\'ve served him coffee. He was walking a bulldog (probably his).';
-        twoGuessed = true;
-      }
-      else {
-        console.log('The user doesn\'t get question two and will try again.');
-        alert('That\'s just rude. Try answering something more polite like \"yes,\" or \"no.\"');
-      }
-    }
-  }
-
-  function questionThree(){
-    if (threeGuessed){
-      alert('You already answered this question!')
-    }
-    else{
-      var questionThreeAnswer = document.getElementById('answerThree').value.toLowerCase();
-      console.log('Third question answer is '+ questionThreeAnswer + '.');
-      if (checkTrue(questionThreeAnswer) == 'affirmative'){
-        console.log('The user got the answer to question three correct. They now have ' + totalTally + ' correct answers.')
-        var threeResponse = document.getElementById('threeSpace');
-        threeSpace.innerHTML = 'Yup! Just call me a mildly embarrassed son of the Grand Canyon State!';
-        tallyUp();
-        threeGuessed = true;
-      }
-      else if (checkFalse(questionThreeAnswer) == 'negative'){
-        console.log('The user got the answer to question three incorrect. They still have ' + totalTally + ' correct answers.');
-        var threeResponse = document.getElementById('threeSpace');
-        threeSpace.innerHTML = 'Wrong! I hardly believe it either, but I grew up checking my loafers for scorpions!';
-        threeGuessed = true;
-      }
-      else {
-        console.log('The user doesn\'t get question three and will try again.');
-        alert('You really should know how these \'yes or no\' questions work by now.');
-      }
-    }
-  }
-*/
   function questionFour(){
-  //  if (fourGuessed){
-      //alert('You already answered this question!')
-
-  /*  else{*/
       var residentGuess = document.getElementById('answerFour').value;
       console.log('The user guessed ' + residentGuess + ' years.');
         if (isNaN(residentGuess)){
