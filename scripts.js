@@ -12,7 +12,6 @@ function tallyUp(){
   console.log('The user got the answer correct. Their tally of correct answers is at ' + totalTally + '.');
 }
 
-
 function checkAnswer(answer){
   if ((answer == 'no')||(answer =='n')||(answer =='nope')||(answer =='nah')||(answer =='nay')||(answer =='false')){
     console.log('the user responded in the negative.')
