@@ -38,11 +38,11 @@
         <p>Got that?</p>
 
         <p>Good! Let's test your reading comprehension with a little quiz.</p>
-        <p id="oneSpace">Did I study political science? &nbsp;<input type='text' id='answerOne'>  <input type='button' value='Submit' onclick='questionOne()'></p>
+        <p id="spaceOne">Did I study political science? &nbsp;<input type='text' id='answerOne'>  <input type='button' value='Submit' onclick='questionOne()'></p>
 
-        <p id="twoSpace">I studied film. Have I ever worked with Kevin Bacon? &nbsp;<input type='text' id='answerTwo'> <input type="button" value="Submit" onclick="questionTwo()"> </p>
+        <p id="spaceTwo">I studied film. Have I ever worked with Kevin Bacon? &nbsp;<input type='text' id='answerTwo'> <input type="button" value="Submit" onclick="questionTwo()"> </p>
 
-        <p id="threeSpace"> Did I grow up in Arizona?&nbsp;<input type='text' id='answerThree'> <input type="button" value="Submit" onclick="questionThree()"> </p>
+        <p id="spaceThree"> Did I grow up in Arizona?&nbsp;<input type='text' id='answerThree'> <input type="button" value="Submit" onclick="questionThree()"> </p>
 
         <p id="fourSpace"> This year I'll be celebrating living in Portland for how many years?&nbsp;<input type='text' id='answerFour'> <input type="button" value="Submit" onclick="questionFour()"> </p>
 
@@ -52,18 +52,71 @@
 
 <script type="text/javascript">
   var totalTally = 0;
+  var totalGuessed = 0;
 
-  var oneGuessed = false;
+  /*var oneGuessed = false;
   var twoGuessed = false;
   var threeGuessed = false;
-  var fourGuessed = false;
+  var fourGuessed = false;*/
 
   function tallyUp(){
     totalTally += 1;
     console.log('The user got the answer correct. Their tally of correct answers is at ' + totalTally + '.');
   }
 
-  function checkFalse(answer){
+//pasted in test text
+
+  function checkAnswer(answer){
+    if ((answer == 'no')||(answer =='n')||(answer =='nope')||(answer =='nah')||(answer =='nay')||(answer =='false')){
+      console.log('the user responded in the negative.')
+      return 'negative';
+    }
+    else if((answer == 'yes' )||(answer == 'y' )|| (answer =='yeah') ||(answer == 'yup')||(answer =='true')){
+      console.log('the user responded in the affirmative.');
+      return 'affirmative';
+    }
+    else {
+      return 'invalid';
+    }
+  }
+
+
+
+  function questionSolve(answerNumber, correctAnswer, correctResponse, wrongResponse){
+    var answerId = "answer" + answerNumber;
+    var userResponse = document.getElementById(answerId).value.toLowerCase();
+    var spaceId = "space" + answerNumber;
+    var response = document.getElementById(spaceId);
+    if (checkAnswer(userResponse) != correctAnswer){
+      response.innerHTML = wrongResponse;
+      totalGuessed++;
+      console.log('The user gave a wrong answer. They have answered ' + totalGuessed + ' questions and have gotten '+ totalTally +' correct answers.');
+    }
+    else if (checkAnswer(userResponse)== 'invalid'){
+      response.innerHTML += 'This is a yes or no question. Please try again.';
+      console.log('the user provided an invalid response.');
+    }
+    else {
+      response.innerHTML = correctResponse;
+      totalGuessed++;
+      tallyUp();
+      console.log('the user is correct. They have answered '+totalGuessed+' questions and have gotten '+totalTally+' correct answers.');
+    }
+  }
+  function questionOne(){
+    questionSolve('One', 'negative', 'That\'s Right!', 'Wrong!');
+  }
+
+  function questionTwo(){
+    questionSolve('Two', 'affirmative', 'That\'s a very generous way of putting it, but yes!', 'Actually you\'re wrong; I\'ve served him coffee. He was walking a bulldog (probably his).');
+  }
+
+  function questionThree(){
+    questionSolve('Three', 'affirmative', 'Yup! Just call me a mildly embarrassed son of the Grand Canyon State!', 'Wrong! I hardly believe it either, but I grew up checking my loafers for scorpions!');
+  }
+
+
+  /*function checkFalse(answer){
     if ((answer == 'no')||(answer =='n')||(answer =='nope')||(answer =='nah')||(answer =='nay')||(answer =='false')){
       console.log('the user responded in the negative.')
       return 'negative';
@@ -125,7 +178,6 @@
       else {
         console.log('The user doesn\'t get question two and will try again.');
         alert('That\'s just rude. Try answering something more polite like \"yes,\" or \"no.\"');
-        questionTwo();
       }
     }
   }
@@ -153,16 +205,15 @@
       else {
         console.log('The user doesn\'t get question three and will try again.');
         alert('You really should know how these \'yes or no\' questions work by now.');
-        questionThree();
       }
     }
   }
-
+*/
   function questionFour(){
-    if (fourGuessed){
-      alert('You already answered this question!')
-    }
-    else{
+  //  if (fourGuessed){
+      //alert('You already answered this question!')
+
+  /*  else{*/
       var residentGuess = document.getElementById('answerFour').value;
       console.log('The user guessed ' + residentGuess + ' years.');
         if (isNaN(residentGuess)){
@@ -181,13 +232,13 @@
           tallyUp()
           var threeResponse = document.getElementById('fourSpace');
           fourSpace.innerHTML = 'You got it! I moved here 8 years ago. How time flies.';
-          fourGuessed = true;
+          totalGuessed++;
         }
       }
-  }
+
 
   function howDidIDo(){
-    if (oneGuessed && twoGuessed && threeGuessed && fourGuessed){
+    if (totalGuessed == 4){
       if (totalTally == 0){
         var resultResponse = document.getElementById('resultSpace');
         resultSpace.innerHTML = 'You have zero answers correct. I\'m not even sure you tried.';
