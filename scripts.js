@@ -1,6 +1,6 @@
 var totalTally = 0;
 var totalGuessed = 0;
-var correctResponses = [
+var correctResponse = [
   'That\'s Right!', 'That\'s a very generous way of putting it, but yes!','Yup! Just call me a mildly embarrassed son of the Grand Canyon State!'
 ]
 var wrongResponses = [
@@ -33,7 +33,7 @@ function questionSolve(answerNumber, correctAnswer, correctResponse, wrongRespon
   var spaceId = "space" + answerNumber;
   var response = document.getElementById(spaceId);
   if (checkAnswer(userResponse) != correctAnswer){
-    response.innerHTML = wrongResponse;
+    response.innerHTML = '<span id=wrongRed>' + wrongResponse + ' </span>';
     totalGuessed++;
     console.log('The user gave a wrong answer. They have answered ' + totalGuessed + ' questions and have gotten '+ totalTally +' correct answers.');
   }
@@ -42,7 +42,7 @@ function questionSolve(answerNumber, correctAnswer, correctResponse, wrongRespon
     console.log('the user provided an invalid response.');
   }
   else {
-    response.innerHTML = correctResponse;
+    response.innerHTML = '<span id=rightGreen>' + correctResponse + '</span>';
     totalGuessed++;
     tallyUp();
     console.log('the user is correct. They have answered '+totalGuessed+' questions and have gotten '+totalTally+' correct answers.');
@@ -69,11 +69,11 @@ function questionFour(){
       }
       else if (residentGuess < 8){
         console.log('User guessed too low by ' + (8 - residentGuess) + ' years.');
-        alert('Close! I\'ve been here a bit longer than that, though.');
+        guessCalibration.innerHTML ='<span id=wrongRed> Close! I\'ve been here a bit longer than that, though.</span>';
       }
       else if (residentGuess > 8){
         console.log('User guessed too high by ' + (residentGuess - 8) + ' years.');
-        alert('Not bad, but I haven\'t quite reached that milestone.')
+        guessCalibration.innerHTML = '<span id=wrongRed> Not bad, but I haven\'t quite reached that milestone.</span>'
       }
       else if (residentGuess == 8){
         tallyUp()

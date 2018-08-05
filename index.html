@@ -20,6 +20,12 @@
         input{
           background-color: #ABE20B;
         }
+        #wrongRed{
+          color:#BD5E7C;
+        }
+        #rightGreen{
+          color:#ABE20B;
+        }
 
         </style>
     </head>
@@ -44,8 +50,9 @@
 
         <p id="spaceThree"> Did I grow up in Arizona?&nbsp;<input type='text' id='answerThree'> <input type="button" value="Submit" onclick="questionThree()"> </p>
 
-        <p id="fourSpace"> This year I'll be celebrating living in Portland for how many years?&nbsp;<input type='text' id='answerFour'> <input type="button" value="Submit" onclick="questionFour()"> </p>
+        <p id="fourSpace"> This year I'll be celebrating living in Portland for how many years?&nbsp;<input type='text' id='answerFour'> <input type="button" value="Submit" onclick="questionFour()"><span id=guessCalibration></span> </p>
 
         <p id="resultSpace">Check your total once you're done!&nbsp;<input type="button" value="How did I do?" onclick="howDidIDo()"> </p>
     </body>
+    <script type="text/javascript" src="scripts.js"></script>
 </html>
