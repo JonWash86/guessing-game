@@ -27,12 +27,12 @@ function checkAnswer(answer){
 }
 
 function questionSolve(answerNumber, correctAnswer, correctResponse, wrongResponse){
-  var answerId = "answer" + answerNumber;
+  var answerId = 'answer' + answerNumber;
   var userResponse = document.getElementById(answerId).value.toLowerCase();
-  var spaceId = "space" + answerNumber;
+  var spaceId = 'space' + answerNumber;
   var response = document.getElementById(spaceId);
   if (checkAnswer(userResponse) != correctAnswer){
-    response.innerHTML = '<span id=wrongRed>' + wrongResponse + ' </span>';
+    response.innerHTML = '<span id=\'wrongRed\'>' + wrongResponse + ' </span>  <img src=\'x-mark.png\' alt=\'x mark\' style=\'height:12px;\'>';
     totalGuessed++;
     console.log('The user gave a wrong answer. They have answered ' + totalGuessed + ' questions and have gotten '+ totalTally +' correct answers.');
   }
@@ -41,7 +41,7 @@ function questionSolve(answerNumber, correctAnswer, correctResponse, wrongRespon
     console.log('the user provided an invalid response.');
   }
   else {
-    response.innerHTML = '<span id=rightGreen>' + correctResponse + '</span>';
+    response.innerHTML = '<span id=rightGreen>' + correctResponse + '</span>  <img src=\'checkmark.png\' alt=\'check mark\' style=\'height:12px;\'>';
     totalGuessed++;
     tallyUp();
     console.log('the user is correct. They have answered '+totalGuessed+' questions and have gotten '+totalTally+' correct answers.');
@@ -64,20 +64,20 @@ function questionFour(){
     console.log('The user guessed ' + residentGuess + ' years.');
       if (isNaN(residentGuess)){
         console.log('They didn\'t even guess a number. I\'m not one to judge, but wow.');
-        alert('I need you to guess a number, please. \'' + residentGuess +'\' years is not a number of years.');
+        guessCalibration.innerHTML ='<span id=\'wrongRed\'> I need you to guess a number, please. \'' + residentGuess +'\' years is not a number of years.</span>';
       }
       else if (residentGuess < 8){
         console.log('User guessed too low by ' + (8 - residentGuess) + ' years.');
-        guessCalibration.innerHTML ='<span id=wrongRed> Close! I\'ve been here a bit longer than that, though.</span>';
+        guessCalibration.innerHTML ='<span id=wrongRed> Close! I\'ve been here a bit longer than that, though.  </span><img src=\'x-mark.png\' alt=\'x mark\' style=\'height:12px;\'>';
       }
       else if (residentGuess > 8){
         console.log('User guessed too high by ' + (residentGuess - 8) + ' years.');
-        guessCalibration.innerHTML = '<span id=wrongRed> Not bad, but I haven\'t quite reached that milestone.</span>'
+        guessCalibration.innerHTML = '<span id=wrongRed> Not bad, but I haven\'t quite reached that milestone.  </span><img src=\'x-mark.png\' alt=\'x mark\' style=\'height:12px;\'>'
       }
       else if (residentGuess == 8){
         tallyUp()
         var threeResponse = document.getElementById('fourSpace');
-        fourSpace.innerHTML = 'You got it! I moved here 8 years ago. How time flies.';
+        fourSpace.innerHTML = '<span id=\'rightGreen\'>You got it! I moved here 8 years ago. How time flies.</span>  <img src=\'checkmark.png\' alt=\'check mark\' style=\'height:12px;\'>';
         totalGuessed++;
       }
     }
